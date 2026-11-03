@@ -1,0 +1,8 @@
+
+<form method="post" action="{{ path('app_assunto_delete', {'codAs': assunto.codAs}) }}"
+    onsubmit="return confirm('Tem certeza que deseja excluir este assunto?');">
+
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ assunto.codAs) }}">
+
+    <button type="submit" class="btn btn-danger">Excluir assunto</button>
+</form>

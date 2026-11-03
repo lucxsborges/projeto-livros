@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar autor{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <h1 class="h3 mb-4">Editar autor</h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {{ include('autor/_form.html.twig', {
+                button_label: 'Salvar alterações'
+            }) }}
+
+            <hr>
+
+            <div class="d-flex justify-content-end">
+                {{ include('autor/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

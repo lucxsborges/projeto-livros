@@ -1,0 +1,10 @@
+
+{{ form_start(form) }}
+    {{ form_row(form.descricao) }}
+
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
+
+        <a href="{{ path('app_assunto_index') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+{{ form_end(form) }}

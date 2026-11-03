@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de livros por autor</title>
+    <style>
+        @page {
+            margin: 20px 25px;
+        }
+
+        body {
+            font-family: "DejaVu Sans", sans-serif;
+            font-size: 10px;
+            color: #222;
+        }
+
+        h1 {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .subtitulo {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .autor {
+            margin-top: 18px;
+            margin-bottom: 8px;
+            padding: 8px;
+            background-color: #e9ecef;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: left;
+            vertical-align: top;
+            overflow-wrap: break-word;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        .valor {
+            white-space: nowrap;
+        }
+
+        .rodape {
+            margin-top: 20px;
+            font-size: 9px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Relatório de livros por autor</h1>
+
+    <div class="subtitulo">
+        Gerado em {{ dataGeracao|date('d/m/Y H:i') }}
+    </div>
+
+    {% for autor in autores %}
+        <div class="autor">
+            {{ autor.nome }}
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 23%;">Título</th>
+                    <th style="width: 17%;">Editora</th>
+                    <th style="width: 8%;">Edição</th>
+                    <th style="width: 9%;">Ano</th>
+                    <th style="width: 13%;">Valor</th>
+                    <th style="width: 30%;">Assuntos</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for livro in autor.livros %}
+                    <tr>
+                        <td>{{ livro.titulo }}</td>
+                        <td>{{ livro.editora }}</td>
+                        <td>{{ livro.edicao }}ª</td>
+                        <td>{{ livro.ano }}</td>
+                        <td class="valor">
+                            R$ {{ livro.valor|number_format(2, ',', '.') }}
+                        </td>
+                        <td>
+                            {% for assunto in livro.assuntos %}
+                                {{ assunto }}{% if not loop.last %}, {% endif %}
+                            {% else %}
+                                —
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    {% else %}
+        <p>Nenhum livro encontrado para o relatório.</p>
+    {% endfor %}
+
+    <div class="rodape">
+        Sistema de gerenciamento de livros
+    </div>
+</body>
+</html>

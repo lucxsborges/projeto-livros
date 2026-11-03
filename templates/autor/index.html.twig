@@ -1,0 +1,47 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Autores{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">Autores</h1>
+
+        <a href="{{ path('app_autor_new') }}" class="btn btn-primary">Novo autor</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for autor in autors %}
+                        <tr>
+                            <td>{{ autor.codAu }}</td>
+                            <td>{{ autor.nome }}</td>
+                            <td class="text-end">
+                                <a href="{{ path('app_autor_show', {'codAu': autor.codAu}) }}"
+                                    class="btn btn-sm btn-outline-info">Visualizar</a>
+
+                                <a href="{{ path('app_autor_edit', {'codAu': autor.codAu}) }}"
+                                    class="btn btn-sm btn-outline-primary">Editar</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-4">Nenhum autor cadastrado.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

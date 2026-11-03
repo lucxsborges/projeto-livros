@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar livro{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <h1 class="h3 mb-4">Editar livro</h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {{ include('livro/_form.html.twig', {
+                button_label: 'Salvar alterações'
+            }) }}
+
+            <hr>
+
+            <div class="d-flex justify-content-end">
+                {{ include('livro/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadastrar assunto{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <h1 class="h3 mb-4">Cadastrar assunto</h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {{ include('assunto/_form.html.twig', {
+                button_label: 'Cadastrar'
+            }) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

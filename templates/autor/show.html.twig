@@ -1,0 +1,39 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualizar autor{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <h1 class="h3 mb-4">Visualizar autor</h1>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width: 180px;">Código</th>
+                        <td>{{ autor.codAu }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nome</th>
+                        <td>{{ autor.nome }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="d-flex gap-2">
+                <a href="{{ path('app_autor_index') }}"
+                   class="btn btn-secondary">Voltar</a>
+
+                <a href="{{ path('app_autor_edit', {'codAu': autor.codAu}) }}"
+                   class="btn btn-primary">Editar</a>
+
+                <div class="ms-auto">
+                    {{ include('autor/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

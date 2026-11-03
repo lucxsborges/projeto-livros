@@ -1,0 +1,86 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Livros{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">Livros</h1>
+
+        <a href="{{ path('app_livro_new') }}"
+           class="btn btn-primary">
+            Novo livro
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Título</th>
+                            <th>Editora</th>
+                            <th>Ano</th>
+                            <th>Valor</th>
+                            <th>Autores</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for livro in livros %}
+                        <tr>
+                            <td>{{ livro.codl }}</td>
+
+                            <td>{{ livro.titulo }}</td>
+
+                            <td>{{ livro.editora }}</td>
+
+                            <td>{{ livro.anoPublicacao }}</td>
+
+                            <td>
+                                R$ {{ livro.valor|number_format(2, ',', '.') }}
+                            </td>
+
+                            <td>
+                                {% for autor in livro.autores %}
+                                    <span class="badge bg-secondary me-1">
+                                        {{ autor.nome }}
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">—</span>
+                                {% endfor %}
+                            </td>
+
+                            <td class="text-end text-nowrap">
+
+                                <a href="{{ path('app_livro_show', {
+                                    'codl': livro.codl
+                                }) }}" class="btn btn-sm btn-outline-info">
+                                    Visualizar
+                                </a>
+
+                                <a href="{{ path('app_livro_edit', {
+                                    'codl': livro.codl
+                                }) }}" class="btn btn-sm btn-outline-primary">
+                                    Editar
+                                </a>
+
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7"
+                                class="text-center text-muted py-4">
+                                Nenhum livro cadastrado.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

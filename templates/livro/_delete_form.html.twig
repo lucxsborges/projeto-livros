@@ -1,0 +1,15 @@
+<form method="post"
+      action="{{ path('app_livro_delete', {
+          'codl': livro.codl
+      }) }}"
+      onsubmit="return confirm('Tem certeza que deseja excluir este livro?');">
+
+    <input type="hidden"
+           name="_token"
+           value="{{ csrf_token('delete' ~ livro.codl) }}">
+
+    <button type="submit" class="btn btn-danger">
+        Excluir livro
+    </button>
+
+</form>

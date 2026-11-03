@@ -1,0 +1,16 @@
+
+{{ form_start(form) }}
+    {{ form_row(form.nome, {
+        label: 'Nome do autor',
+        attr: {
+            placeholder: 'Digite o nome do autor',
+            maxlength: 40
+        }
+    }) }}
+
+    <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">{{ button_label|default('Salvar') }}</button>
+
+        <a href="{{ path('app_autor_index') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+{{ form_end(form) }}
